@@ -3,13 +3,59 @@ import '../styles/global.css';
 
 import Layout from '../layouts/Layout.astro';
 import GradientWrapper from '../components/GradientWrapper.astro';
+import { Image } from 'astro:assets';
+
+import HeroImageURL from '../assets/cole.png';
 ---
 
 <Layout>
   <GradientWrapper>
-    <section id="Hero" class="max-w-7xl mx-auto grid grid-cols-[40%_1fr]">
-      <div>Test</div>
-      <div>Test</div>
+    <section
+      id="Hero"
+      class="max-w-6xl mx-auto flex gap-36 items-center px-6 pt-6"
+    >
+      <Image
+        src={HeroImageURL}
+        alt="Cole Troester"
+        class="max-w-[400px] mx-auto"
+      />
+      <div>
+        <p class="text-3xl">Hi, I'm</p>
+        <h1 class="text-white text-8xl mb-4 -ml-1.5">Cole Troester.</h1>
+        <h3 class="text-3xl mb-8">
+          Crafting full-site builds and web apps that <strong class="text-white"
+            >drive growth</strong
+          > and delight users.
+        </h3>
+        <ul class="text-xl list-disc list-inside">
+          <li>Websites & Web Apps</li>
+          <li>UX & UI Design</li>
+          <li>APIs & Full-Stack</li>
+        </ul>
+      </div>
+    </section>
+    <section id="CTAs" class="max-w-[1400px] mx-auto -mt-0.5 h-screen">
+      <div class="grid grid-cols-2 gap-8">
+        <div>
+          <div
+            class="border-2 rounded-lg border-rose-900/50 bg-rose-500/20 backdrop-blur-2xl px-8 py-4 mb-8"
+          >
+            <h2 class="text-white text-4xl">Projects</h2>
+          </div>
+          <div
+            class="border-2 rounded-lg border-green-900/50 bg-green-500/20 backdrop-blur-2xl px-8 py-4"
+          >
+            <h2 class="text-white text-4xl">Contact</h2>
+          </div>
+        </div>
+        <div>
+          <div
+            class="border-2 rounded-lg border-blue-900/50 bg-blue-500/20 backdrop-blur-2xl px-8 py-4 mb-12 h-full"
+          >
+            <h2 class="text-white text-4xl">Articles</h2>
+          </div>
+        </div>
+      </div>
     </section>
   </GradientWrapper>
 </Layout>
