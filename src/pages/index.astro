@@ -34,28 +34,177 @@ import HeroImageURL from '../assets/cole.png';
         </ul>
       </div>
     </section>
-    <section id="CTAs" class="max-w-[1400px] mx-auto -mt-0.5 h-screen">
+    <section id="CTAs" class="max-w-[1400px] mx-auto -mt-0.5 pb-6 px-8">
       <div class="grid grid-cols-2 gap-8">
         <div>
           <div
-            class="border-2 rounded-lg border-rose-900/50 bg-rose-500/20 backdrop-blur-2xl px-8 py-4 mb-8"
+            class="border-2 rounded-lg border-rose-900/50 bg-rose-500/20 backdrop-blur-2xl px-8 py-4 mb-8 grid grid-cols-2 gap-8 group"
           >
-            <h2 class="text-white text-4xl">Projects</h2>
+            <div>
+              <h2 class="text-white text-4xl mb-2">Projects</h2>
+              <p class="mb-6">
+                Projects that showcase technical expertise and attention to user
+                experience.
+              </p>
+              <a href="#" class="bg-rose-500 rounded-sm px-2 inline-block py-1"
+                >Browse Portfolio</a
+              >
+            </div>
+            <div class="relative mt-1 group">
+              <a href="#1" class="absolute top-1/2 shadow-xl project-item">
+                <img src="https://placehold.co/1920x1080" />
+              </a>
+              <a href="#2" class="absolute top-1/2 shadow-xl project-item">
+                <img src="https://placehold.co/1920x1080" />
+              </a>
+              <a href="#3" class="absolute top-1/2 shadow-xl project-item">
+                <img src="https://placehold.co/1920x1080" />
+              </a>
+              <a href="#4" class="absolute top-1/2 shadow-xl project-item">
+                <img src="https://placehold.co/1920x1080" />
+              </a>
+            </div>
           </div>
+
           <div
-            class="border-2 rounded-lg border-green-900/50 bg-green-500/20 backdrop-blur-2xl px-8 py-4"
+            class="border-2 rounded-lg border-green-900/50 bg-green-500/20 backdrop-blur-2xl px-8 py-4 grid grid-cols-2"
           >
-            <h2 class="text-white text-4xl">Contact</h2>
+            <div>
+              <h2 class="text-white text-4xl mb-2">Contact</h2>
+              <p class="mb-6">
+                Interested in discussing potential projects or collaborations?
+                Let's connect.
+              </p>
+              <a
+                href="#"
+                class="bg-emerald-700 rounded-sm px-2 inline-block py-1"
+                >Let’s Connect</a
+              >
+            </div>
           </div>
         </div>
         <div>
           <div
             class="border-2 rounded-lg border-blue-900/50 bg-blue-500/20 backdrop-blur-2xl px-8 py-4 mb-12 h-full"
           >
-            <h2 class="text-white text-4xl">Articles</h2>
+            <div>
+              <h2 class="text-white text-4xl mb-2">Articles</h2>
+              <p class="mb-6">
+                Technical insights and perspectives on modern web development
+                practices. Exploring new frameworks, sharing lessons learned,
+                and diving deep into the tools that shape how we build for the
+                web.
+              </p>
+              <a href="#" class="bg-blue-600 rounded-sm px-2 inline-block py-1"
+                >View All Articles</a
+              >
+            </div>
           </div>
         </div>
       </div>
     </section>
   </GradientWrapper>
 </Layout>
+
+<style lang="scss">
+  @use 'sass:math';
+
+  $duration: 20s;
+  $items: 4;
+
+  @keyframes project-carousel {
+    0%,
+    22%,
+    100% {
+      left: 0;
+      width: 33.333333%;
+      opacity: 0.5;
+      z-index: 1;
+      transform: translateX(0) translateY(-50%);
+      filter: blur(0px);
+    }
+
+    23%,
+    24% {
+      filter: blur(1px);
+    }
+
+    25%,
+    47% {
+      left: 50%;
+      top: 50%;
+      width: 66.666667%;
+      opacity: 1;
+      z-index: 10;
+      transform: translateX(-50%) translateY(-50%);
+      filter: blur(0px);
+    }
+
+    48%,
+    49% {
+      filter: blur(2px);
+    }
+
+    50%,
+    72% {
+      left: auto;
+      right: 0;
+      width: 33.333333%;
+      opacity: 0.5;
+      z-index: 1;
+      transform: translateX(0) translateY(-50%);
+      filter: blur(0px);
+    }
+
+    73%,
+    74% {
+      filter: blur(1px);
+    }
+
+    75%,
+    80% {
+      right: 0;
+      width: 0%;
+      opacity: 0;
+      z-index: 1;
+      transform: translateX(0) translateY(-50%);
+      filter: blur(0px);
+    }
+
+    81%,
+    97% {
+      right: 0;
+      width: 0%;
+      opacity: 0;
+      z-index: 1;
+      transform: translateX(0) translateY(-50%);
+      filter: blur(0px);
+    }
+
+    98%,
+    99% {
+      filter: blur(1px);
+    }
+  }
+
+  .project-item {
+    animation: project-carousel $duration forwards;
+
+    &:nth-child(1) {
+      animation-delay: #{math.div(-$duration, $items) * 0};
+      animation-iteration-count: 3;
+    }
+    &:nth-child(2) {
+      animation-delay: #{math.div(-$duration, $items) * 1};
+      animation-iteration-count: 3.25;
+    }
+    &:nth-child(3) {
+      animation-delay: #{math.div(-$duration, $items) * 2};
+      animation-iteration-count: 3.5;
+    }
+    &:nth-child(4) {
+      animation-delay: #{math.div(-$duration, $items) * 3};
+      animation-iteration-count: 3.75;
+    }
+  }
+</style>
