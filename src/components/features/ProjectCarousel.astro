@@ -1,0 +1,125 @@
+---
+export interface Props {
+    projects: Array<{
+        id: string;
+        href: string;
+        image: string;
+        alt?: string;
+    }>;
+}
+
+const { projects } = Astro.props;
+---
+
+<div class="group relative mt-1">
+    {
+        projects.map((project) => (
+            <a href={project.href} class="project-item absolute top-1/2 shadow-xl">
+                <img src={project.image} alt={project.alt || `Project ${project.id}`} />
+            </a>
+        ))
+    }
+</div>
+
+<style lang="scss">
+    @use 'sass:math';
+
+    $duration: 20s;
+    $items: 4;
+
+    @keyframes project-carousel {
+        0%,
+        22%,
+        100% {
+            left: 0;
+            width: 33.333333%;
+            opacity: 0.5;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        23%,
+        24% {
+            filter: blur(1px);
+        }
+
+        25%,
+        47% {
+            left: 50%;
+            top: 50%;
+            width: 66.666667%;
+            opacity: 1;
+            z-index: 10;
+            transform: translateX(-50%) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        48%,
+        49% {
+            filter: blur(2px);
+        }
+
+        50%,
+        72% {
+            left: auto;
+            right: 0;
+            width: 33.333333%;
+            opacity: 0.5;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        73%,
+        74% {
+            filter: blur(1px);
+        }
+
+        75%,
+        80% {
+            right: 0;
+            width: 0%;
+            opacity: 0;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        81%,
+        97% {
+            right: 0;
+            width: 0%;
+            opacity: 0;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        98%,
+        99% {
+            filter: blur(1px);
+        }
+    }
+
+    .project-item {
+        animation: project-carousel $duration forwards;
+
+        &:nth-child(1) {
+            animation-delay: #{math.div(-$duration, $items) * 0};
+            animation-iteration-count: 3;
+        }
+        &:nth-child(2) {
+            animation-delay: #{math.div(-$duration, $items) * 1};
+            animation-iteration-count: 3.25;
+        }
+        &:nth-child(3) {
+            animation-delay: #{math.div(-$duration, $items) * 2};
+            animation-iteration-count: 3.5;
+        }
+        &:nth-child(4) {
+            animation-delay: #{math.div(-$duration, $items) * 3};
+            animation-iteration-count: 3.75;
+        }
+    }
+</style>
