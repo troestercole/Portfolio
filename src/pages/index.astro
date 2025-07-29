@@ -1,252 +1,255 @@
 ---
-import '../styles/global.css';
+import '../styles/global.css'
 
-import Layout from '../layouts/Layout.astro';
-import GradientWrapper from '../components/GradientWrapper.astro';
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro'
+import GradientWrapper from '../components/GradientWrapper.astro'
+import EmailIcon from '../components/icons/email.astro'
+import LinkedInIcon from '../components/icons/linked-in.astro'
+import GithubIcon from '../components/icons/github.astro'
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
 
-import HeroImageURL from '../assets/cole.png';
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+import HeroImageURL from '../assets/cole.png'
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 ---
 
 <Layout>
-  <GradientWrapper>
-    <section
-      id="Hero"
-      class="max-w-6xl mx-auto flex gap-36 items-center px-6 pt-6"
-    >
-      <Image
-        src={HeroImageURL}
-        alt="Cole Troester"
-        class="max-w-[400px] mx-auto"
-      />
-      <div>
-        <p class="text-3xl">Hi, I'm</p>
-        <h1 class="text-white text-8xl mb-4 -ml-1.5">Cole Troester.</h1>
-        <h3 class="text-3xl mb-8">
-          Crafting full-site builds and web apps that <strong class="text-white"
-            >drive growth</strong
-          > and delight users.
-        </h3>
-        <ul class="text-xl list-disc list-inside">
-          <li>Websites & Web Apps</li>
-          <li>UX & UI Design</li>
-          <li>APIs & Full-Stack</li>
-        </ul>
-      </div>
-    </section>
-    <section id="CTAs" class="max-w-[1400px] mx-auto -mt-0.5 pb-6 px-8">
-      <div class="grid grid-cols-2 gap-8">
-        <div>
-          <div
-            class="border-2 rounded-lg border-rose-900/50 bg-rose-500/20 backdrop-blur-2xl px-8 py-4 mb-8 grid grid-cols-2 gap-8 group"
-          >
+    <GradientWrapper>
+        <section id="Hero" class="mx-auto flex max-w-6xl items-center gap-36 px-6 pt-6">
+            <Image src={HeroImageURL} alt="Cole Troester" class="mx-auto max-w-[400px]" />
             <div>
-              <h2 class="text-white text-4xl mb-2">Projects</h2>
-              <p class="mb-6">
-                Projects that showcase technical expertise and attention to user
-                experience.
-              </p>
-              <a href="#" class="bg-rose-500 rounded-sm px-2 inline-block py-1"
-                >Browse Portfolio</a
-              >
+                <p class="text-3xl">Hi, I'm</p>
+                <h1 class="mb-4 -ml-1.5 text-8xl text-white">Cole Troester.</h1>
+                <h3 class="mb-8 text-3xl">
+                    Crafting full-site builds and web apps that <strong class="text-white">drive growth</strong> and delight users.
+                </h3>
+                <ul class="list-inside list-disc text-xl">
+                    <li>Websites & Web Apps</li>
+                    <li>UX & UI Design</li>
+                    <li>APIs & Full-Stack</li>
+                </ul>
             </div>
-            <div class="relative mt-1 group">
-              <a href="#1" class="absolute top-1/2 shadow-xl project-item">
-                <img src="https://placehold.co/1920x1080" />
-              </a>
-              <a href="#2" class="absolute top-1/2 shadow-xl project-item">
-                <img src="https://placehold.co/1920x1080" />
-              </a>
-              <a href="#3" class="absolute top-1/2 shadow-xl project-item">
-                <img src="https://placehold.co/1920x1080" />
-              </a>
-              <a href="#4" class="absolute top-1/2 shadow-xl project-item">
-                <img src="https://placehold.co/1920x1080" />
-              </a>
-            </div>
-          </div>
+        </section>
+        <section id="CTAs" class="mx-auto -mt-0.5 max-w-[1400px] px-8 pb-6">
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <div class="group mb-8 grid grid-cols-2 gap-8 rounded-lg border-2 border-rose-900/50 bg-rose-500/20 px-8 py-4 backdrop-blur-2xl">
+                        <div>
+                            <h2 class="mb-2 text-4xl text-white">Projects</h2>
+                            <p class="mb-6">Projects that showcase technical expertise and attention to user experience.</p>
+                            <a href="#" class="inline-block rounded-sm bg-rose-500 px-2 py-1 transition-colors duration-200 hover:bg-rose-950"
+                                >Browse Portfolio</a
+                            >
+                        </div>
+                        <div class="group relative mt-1">
+                            <a href="#1" class="project-item absolute top-1/2 shadow-xl">
+                                <img src="https://placehold.co/1920x1080" />
+                            </a>
+                            <a href="#2" class="project-item absolute top-1/2 shadow-xl">
+                                <img src="https://placehold.co/1920x1080" />
+                            </a>
+                            <a href="#3" class="project-item absolute top-1/2 shadow-xl">
+                                <img src="https://placehold.co/1920x1080" />
+                            </a>
+                            <a href="#4" class="project-item absolute top-1/2 shadow-xl">
+                                <img src="https://placehold.co/1920x1080" />
+                            </a>
+                        </div>
+                    </div>
 
-          <div
-            class="border-2 rounded-lg border-green-900/50 bg-green-500/20 backdrop-blur-2xl px-8 py-4 grid grid-cols-2"
-          >
-            <div>
-              <h2 class="text-white text-4xl mb-2">Contact</h2>
-              <p class="mb-6">
-                Interested in discussing potential projects or collaborations?
-                Let's connect.
-              </p>
-              <a
-                href="#"
-                class="bg-emerald-700 rounded-sm px-2 inline-block py-1"
-                >Let’s Connect</a
-              >
+                    <div class="grid grid-cols-[2fr_1fr] rounded-lg border-2 border-green-900/50 bg-green-500/20 px-8 py-4 backdrop-blur-2xl">
+                        <div>
+                            <h2 class="mb-2 text-4xl text-white">Contact</h2>
+                            <p class="mb-6">Interested in discussing potential projects or collaborations? Let's connect.</p>
+                            <a href="#" class="inline-block rounded-sm bg-emerald-700 px-2 py-1 transition-colors duration-200 hover:bg-green-950"
+                                >Let’s Connect</a
+                            >
+                        </div>
+                        <ul class="flex h-full flex-col items-end justify-between">
+                            <li>
+                                <a
+                                    href="mailto:troestercole@gmail.com"
+                                    target="_blank"
+                                    title="Email"
+                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-green-800 transition-colors duration-200 hover:bg-green-950"
+                                >
+                                    <EmailIcon />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://www.linkedin.com/in/cole-troester/"
+                                    target="_blank"
+                                    title="LinkedIn"
+                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-green-800 transition-colors duration-200 hover:bg-green-950"
+                                >
+                                    <LinkedInIcon />
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="https://github.com/troestercole"
+                                    target="_blank"
+                                    title="Github"
+                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-green-800 transition-colors duration-200 hover:bg-green-950"
+                                >
+                                    <GithubIcon />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="mb-12 flex h-full flex-col gap-8 rounded-lg border-2 border-blue-900/50 bg-blue-500/20 px-8 py-4 backdrop-blur-2xl">
+                        <div>
+                            <h2 class="mb-2 text-4xl text-white">Articles</h2>
+                            <p class="mb-6">
+                                Technical insights and perspectives on modern web development practices. Exploring new frameworks, sharing lessons
+                                learned, and diving deep into the tools that shape how we build for the web.
+                            </p>
+                            <a href="#" class="inline-block rounded-sm bg-blue-600 px-2 py-1 transition-colors duration-200 hover:bg-blue-950"
+                                >View All Articles</a
+                            >
+                        </div>
+                        <div class="grid flex-grow grid-cols-[2fr_1fr] gap-4">
+                            <a
+                                href="#"
+                                class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
+                                style={{ backgroundImage: `url(${posts[0].data.image.url})` }}
+                            >
+                                <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/90 to-70%"></div>
+                                <div class="relative bottom-0 z-10 w-full">
+                                    <p class="mb-1 line-clamp-1 truncate text-xl text-white">
+                                        {posts[0].data.title}
+                                    </p>
+                                    <p class="line-clamp-1 truncate text-sm">
+                                        {posts[0].data.description}
+                                    </p>
+                                </div>
+                            </a>
+                            <a
+                                href="#"
+                                class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
+                                style={{ backgroundImage: `url(${posts[1].data.image.url})` }}
+                            >
+                                <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/95 to-50%"></div>
+                                <div class="relative bottom-0 z-10 w-full">
+                                    <p class="mb-1 line-clamp-1 truncate text-xl text-white">
+                                        {posts[1].data.title}
+                                    </p>
+                                    <p class="line-clamp-1 truncate text-sm">
+                                        {posts[1].data.description}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div>
-          <div
-            class="border-2 rounded-lg border-blue-900/50 bg-blue-500/20 backdrop-blur-2xl px-8 py-4 mb-12 h-full flex flex-col gap-8"
-          >
-            <div>
-              <h2 class="text-white text-4xl mb-2">Articles</h2>
-              <p class="mb-6">
-                Technical insights and perspectives on modern web development
-                practices. Exploring new frameworks, sharing lessons learned,
-                and diving deep into the tools that shape how we build for the
-                web.
-              </p>
-              <a href="#" class="bg-blue-600 rounded-sm px-2 inline-block py-1"
-                >View All Articles</a
-              >
-            </div>
-            <div class="grid grid-cols-[2fr_1fr] gap-4 flex-grow">
-              <a
-                href="#"
-                class="w-full h-full bg-gray-200 rounded-lg bg-cover bg-center relative overflow-hidden flex items-end px-4 py-4 shadow-sm"
-                style={{ backgroundImage: `url(${posts[0].data.image.url})` }}
-              >
-                <div
-                  class="absolute inset-0 bg-gradient-to-b from-transparent to-70% to-gray-900/90 z-0"
-                >
-                </div>
-                <div class="z-10 bottom-0 relative w-full">
-                  <p class="text-white text-xl truncate line-clamp-1 mb-1">
-                    {posts[0].data.title}
-                  </p>
-                  <p class="text-sm truncate line-clamp-1">
-                    {posts[0].data.description}
-                  </p>
-                </div>
-              </a>
-              <a
-                href="#"
-                class="w-full h-full bg-gray-200 rounded-lg bg-cover bg-center relative overflow-hidden flex items-end px-4 py-4 shadow-sm"
-                style={{ backgroundImage: `url(${posts[1].data.image.url})` }}
-              >
-                <div
-                  class="absolute inset-0 bg-gradient-to-b from-transparent to-50% to-gray-900/95 z-0"
-                >
-                </div>
-                <div class="z-10 bottom-0 relative w-full">
-                  <p class="text-white text-xl truncate line-clamp-1 mb-1">
-                    {posts[1].data.title}
-                  </p>
-                  <p class="text-sm truncate line-clamp-1">
-                    {posts[1].data.description}
-                  </p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </GradientWrapper>
+        </section>
+    </GradientWrapper>
 </Layout>
 
 <style lang="scss">
-  @use 'sass:math';
+    @use 'sass:math';
 
-  $duration: 20s;
-  $items: 4;
+    $duration: 20s;
+    $items: 4;
 
-  @keyframes project-carousel {
-    0%,
-    22%,
-    100% {
-      left: 0;
-      width: 33.333333%;
-      opacity: 0.5;
-      z-index: 1;
-      transform: translateX(0) translateY(-50%);
-      filter: blur(0px);
+    @keyframes project-carousel {
+        0%,
+        22%,
+        100% {
+            left: 0;
+            width: 33.333333%;
+            opacity: 0.5;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        23%,
+        24% {
+            filter: blur(1px);
+        }
+
+        25%,
+        47% {
+            left: 50%;
+            top: 50%;
+            width: 66.666667%;
+            opacity: 1;
+            z-index: 10;
+            transform: translateX(-50%) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        48%,
+        49% {
+            filter: blur(2px);
+        }
+
+        50%,
+        72% {
+            left: auto;
+            right: 0;
+            width: 33.333333%;
+            opacity: 0.5;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        73%,
+        74% {
+            filter: blur(1px);
+        }
+
+        75%,
+        80% {
+            right: 0;
+            width: 0%;
+            opacity: 0;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        81%,
+        97% {
+            right: 0;
+            width: 0%;
+            opacity: 0;
+            z-index: 1;
+            transform: translateX(0) translateY(-50%);
+            filter: blur(0px);
+        }
+
+        98%,
+        99% {
+            filter: blur(1px);
+        }
     }
 
-    23%,
-    24% {
-      filter: blur(1px);
-    }
+    .project-item {
+        animation: project-carousel $duration forwards;
 
-    25%,
-    47% {
-      left: 50%;
-      top: 50%;
-      width: 66.666667%;
-      opacity: 1;
-      z-index: 10;
-      transform: translateX(-50%) translateY(-50%);
-      filter: blur(0px);
+        &:nth-child(1) {
+            animation-delay: #{math.div(-$duration, $items) * 0};
+            animation-iteration-count: 3;
+        }
+        &:nth-child(2) {
+            animation-delay: #{math.div(-$duration, $items) * 1};
+            animation-iteration-count: 3.25;
+        }
+        &:nth-child(3) {
+            animation-delay: #{math.div(-$duration, $items) * 2};
+            animation-iteration-count: 3.5;
+        }
+        &:nth-child(4) {
+            animation-delay: #{math.div(-$duration, $items) * 3};
+            animation-iteration-count: 3.75;
+        }
     }
-
-    48%,
-    49% {
-      filter: blur(2px);
-    }
-
-    50%,
-    72% {
-      left: auto;
-      right: 0;
-      width: 33.333333%;
-      opacity: 0.5;
-      z-index: 1;
-      transform: translateX(0) translateY(-50%);
-      filter: blur(0px);
-    }
-
-    73%,
-    74% {
-      filter: blur(1px);
-    }
-
-    75%,
-    80% {
-      right: 0;
-      width: 0%;
-      opacity: 0;
-      z-index: 1;
-      transform: translateX(0) translateY(-50%);
-      filter: blur(0px);
-    }
-
-    81%,
-    97% {
-      right: 0;
-      width: 0%;
-      opacity: 0;
-      z-index: 1;
-      transform: translateX(0) translateY(-50%);
-      filter: blur(0px);
-    }
-
-    98%,
-    99% {
-      filter: blur(1px);
-    }
-  }
-
-  .project-item {
-    animation: project-carousel $duration forwards;
-
-    &:nth-child(1) {
-      animation-delay: #{math.div(-$duration, $items) * 0};
-      animation-iteration-count: 3;
-    }
-    &:nth-child(2) {
-      animation-delay: #{math.div(-$duration, $items) * 1};
-      animation-iteration-count: 3.25;
-    }
-    &:nth-child(3) {
-      animation-delay: #{math.div(-$duration, $items) * 2};
-      animation-iteration-count: 3.5;
-    }
-    &:nth-child(4) {
-      animation-delay: #{math.div(-$duration, $items) * 3};
-      animation-iteration-count: 3.75;
-    }
-  }
 </style>
