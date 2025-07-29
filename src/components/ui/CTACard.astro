@@ -1,0 +1,33 @@
+---
+export interface Props {
+    color: 'red' | 'green' | 'blue';
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonHref: string;
+    className?: string;
+}
+
+const { color, title, description, buttonText, buttonHref, className = '' } = Astro.props;
+
+const colorClasses = {
+    red: 'border-rose-900/50 bg-rose-500/20',
+    green: 'border-green-900/50 bg-green-500/20',
+    blue: 'border-blue-900/50 bg-blue-500/20',
+};
+
+const buttonClasses = {
+    red: 'bg-rose-500 hover:bg-rose-950',
+    green: 'bg-emerald-700 hover:bg-green-950',
+    blue: 'bg-blue-600 hover:bg-blue-950',
+};
+---
+
+<div class={`rounded-lg border-2 px-8 py-4 backdrop-blur-2xl ${colorClasses[color]} ${className}`}>
+    <div>
+        <h2 class="mb-2 text-4xl text-white">{title}</h2>
+        <p class="mb-6">{description}</p>
+        <a href={buttonHref} class={`inline-block rounded-sm px-2 py-1 transition-colors duration-200 ${buttonClasses[color]}`}>{buttonText}</a>
+    </div>
+    <slot />
+</div>
