@@ -4,8 +4,12 @@ import '../styles/global.css';
 import Layout from '../layouts/Layout.astro';
 import GradientWrapper from '../components/GradientWrapper.astro';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
 import HeroImageURL from '../assets/cole.png';
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <Layout>
@@ -85,7 +89,7 @@ import HeroImageURL from '../assets/cole.png';
         </div>
         <div>
           <div
-            class="border-2 rounded-lg border-blue-900/50 bg-blue-500/20 backdrop-blur-2xl px-8 py-4 mb-12 h-full"
+            class="border-2 rounded-lg border-blue-900/50 bg-blue-500/20 backdrop-blur-2xl px-8 py-4 mb-12 h-full flex flex-col gap-8"
           >
             <div>
               <h2 class="text-white text-4xl mb-2">Articles</h2>
@@ -98,6 +102,44 @@ import HeroImageURL from '../assets/cole.png';
               <a href="#" class="bg-blue-600 rounded-sm px-2 inline-block py-1"
                 >View All Articles</a
               >
+            </div>
+            <div class="grid grid-cols-[2fr_1fr] gap-4 flex-grow">
+              <a
+                href="#"
+                class="w-full h-full bg-gray-200 rounded-lg bg-cover bg-center relative overflow-hidden flex items-end px-4 py-4 shadow-sm"
+                style={{ backgroundImage: `url(${posts[0].data.image.url})` }}
+              >
+                <div
+                  class="absolute inset-0 bg-gradient-to-b from-transparent to-70% to-gray-900/90 z-0"
+                >
+                </div>
+                <div class="z-10 bottom-0 relative w-full">
+                  <p class="text-white text-xl truncate line-clamp-1 mb-1">
+                    {posts[0].data.title}
+                  </p>
+                  <p class="text-sm truncate line-clamp-1">
+                    {posts[0].data.description}
+                  </p>
+                </div>
+              </a>
+              <a
+                href="#"
+                class="w-full h-full bg-gray-200 rounded-lg bg-cover bg-center relative overflow-hidden flex items-end px-4 py-4 shadow-sm"
+                style={{ backgroundImage: `url(${posts[1].data.image.url})` }}
+              >
+                <div
+                  class="absolute inset-0 bg-gradient-to-b from-transparent to-50% to-gray-900/95 z-0"
+                >
+                </div>
+                <div class="z-10 bottom-0 relative w-full">
+                  <p class="text-white text-xl truncate line-clamp-1 mb-1">
+                    {posts[1].data.title}
+                  </p>
+                  <p class="text-sm truncate line-clamp-1">
+                    {posts[1].data.description}
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
