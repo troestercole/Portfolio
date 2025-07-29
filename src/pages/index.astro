@@ -1,17 +1,17 @@
 ---
-import '../styles/global.css'
+import '../styles/global.css';
 
-import Layout from '../layouts/Layout.astro'
-import GradientWrapper from '../components/GradientWrapper.astro'
-import EmailIcon from '../components/icons/email.astro'
-import LinkedInIcon from '../components/icons/linked-in.astro'
-import GithubIcon from '../components/icons/github.astro'
-import { Image } from 'astro:assets'
-import { getCollection } from 'astro:content'
+import CTACard from '../components/ui/CTACard.astro';
 
-import HeroImageURL from '../assets/cole.png'
+import Layout from '../layouts/Layout.astro';
+import GradientWrapper from '../components/GradientWrapper.astro';
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+import HeroImageURL from '../assets/cole.png';
+import SocialLinks from '../components/features/SocialLinks.astro';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout>
@@ -34,14 +34,14 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
         <section id="CTAs" class="mx-auto -mt-0.5 max-w-[1400px] px-8 pb-6">
             <div class="grid grid-cols-2 gap-8">
                 <div>
-                    <div class="group mb-8 grid grid-cols-2 gap-8 rounded-lg border-2 border-rose-900/50 bg-rose-500/20 px-8 py-4 backdrop-blur-2xl">
-                        <div>
-                            <h2 class="mb-2 text-4xl text-white">Projects</h2>
-                            <p class="mb-6">Projects that showcase technical expertise and attention to user experience.</p>
-                            <a href="#" class="inline-block rounded-sm bg-rose-500 px-2 py-1 transition-colors duration-200 hover:bg-rose-950"
-                                >Browse Portfolio</a
-                            >
-                        </div>
+                    <CTACard
+                        color="red"
+                        title="Projects"
+                        description="Projects that showcase technical expertise and attention to user experience."
+                        buttonHref="#"
+                        buttonText="Browse Portfolio"
+                        className="mb-8 grid grid-cols-2 gap-8"
+                    >
                         <div class="group relative mt-1">
                             <a href="#1" class="project-item absolute top-1/2 shadow-xl">
                                 <img src="https://placehold.co/1920x1080" />
@@ -56,96 +56,61 @@ const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueO
                                 <img src="https://placehold.co/1920x1080" />
                             </a>
                         </div>
-                    </div>
+                    </CTACard>
 
-                    <div class="grid grid-cols-[2fr_1fr] rounded-lg border-2 border-green-900/50 bg-green-500/20 px-8 py-4 backdrop-blur-2xl">
-                        <div>
-                            <h2 class="mb-2 text-4xl text-white">Contact</h2>
-                            <p class="mb-6">Interested in discussing potential projects or collaborations? Let's connect.</p>
-                            <a href="#" class="inline-block rounded-sm bg-emerald-700 px-2 py-1 transition-colors duration-200 hover:bg-green-950"
-                                >Let’s Connect</a
-                            >
-                        </div>
-                        <ul class="flex h-full flex-col items-end justify-between">
-                            <li>
-                                <a
-                                    href="mailto:troestercole@gmail.com"
-                                    target="_blank"
-                                    title="Email"
-                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-green-800 transition-colors duration-200 hover:bg-green-950"
-                                >
-                                    <EmailIcon />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://www.linkedin.com/in/cole-troester/"
-                                    target="_blank"
-                                    title="LinkedIn"
-                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-green-800 transition-colors duration-200 hover:bg-green-950"
-                                >
-                                    <LinkedInIcon />
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    href="https://github.com/troestercole"
-                                    target="_blank"
-                                    title="Github"
-                                    class="flex h-10 w-10 items-center justify-center rounded-full bg-green-800 transition-colors duration-200 hover:bg-green-950"
-                                >
-                                    <GithubIcon />
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    <CTACard
+                        color="green"
+                        title="Contact"
+                        description="Interested in discussing potential projects or collaborations? Let's connect."
+                        buttonHref="#"
+                        buttonText="Let’s Connect"
+                        className="grid grid-cols-[2fr_1fr] gap-8"
+                    >
+                        <SocialLinks color="green" />
+                    </CTACard>
                 </div>
-                <div>
-                    <div class="mb-12 flex h-full flex-col gap-8 rounded-lg border-2 border-blue-900/50 bg-blue-500/20 px-8 py-4 backdrop-blur-2xl">
-                        <div>
-                            <h2 class="mb-2 text-4xl text-white">Articles</h2>
-                            <p class="mb-6">
-                                Technical insights and perspectives on modern web development practices. Exploring new frameworks, sharing lessons
-                                learned, and diving deep into the tools that shape how we build for the web.
-                            </p>
-                            <a href="#" class="inline-block rounded-sm bg-blue-600 px-2 py-1 transition-colors duration-200 hover:bg-blue-950"
-                                >View All Articles</a
-                            >
-                        </div>
-                        <div class="grid flex-grow grid-cols-[2fr_1fr] gap-4">
-                            <a
-                                href="#"
-                                class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
-                                style={{ backgroundImage: `url(${posts[0].data.image.url})` }}
-                            >
-                                <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/90 to-70%"></div>
-                                <div class="relative bottom-0 z-10 w-full">
-                                    <p class="mb-1 line-clamp-1 truncate text-xl text-white">
-                                        {posts[0].data.title}
-                                    </p>
-                                    <p class="line-clamp-1 truncate text-sm">
-                                        {posts[0].data.description}
-                                    </p>
-                                </div>
-                            </a>
-                            <a
-                                href="#"
-                                class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
-                                style={{ backgroundImage: `url(${posts[1].data.image.url})` }}
-                            >
-                                <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/95 to-50%"></div>
-                                <div class="relative bottom-0 z-10 w-full">
-                                    <p class="mb-1 line-clamp-1 truncate text-xl text-white">
-                                        {posts[1].data.title}
-                                    </p>
-                                    <p class="line-clamp-1 truncate text-sm">
-                                        {posts[1].data.description}
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
+
+                <CTACard
+                    color="blue"
+                    title="Articles"
+                    description="Technical insights and perspectives on modern web development practices. Exploring new frameworks, sharing lessons learned, and diving deep into the tools that shape how we build for the web."
+                    buttonHref="#"
+                    buttonText="View All Articles"
+                    className="flex h-full flex-col gap-8"
+                >
+                    <div class="grid flex-grow grid-cols-[2fr_1fr] gap-4">
+                        <a
+                            href="#"
+                            class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
+                            style={{ backgroundImage: `url(${posts[0].data.image.url})` }}
+                        >
+                            <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/90 to-70%"></div>
+                            <div class="relative bottom-0 z-10 w-full">
+                                <p class="mb-1 line-clamp-1 truncate text-xl text-white">
+                                    {posts[0].data.title}
+                                </p>
+                                <p class="line-clamp-1 truncate text-sm">
+                                    {posts[0].data.description}
+                                </p>
+                            </div>
+                        </a>
+                        <a
+                            href="#"
+                            class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
+                            style={{ backgroundImage: `url(${posts[1].data.image.url})` }}
+                        >
+                            <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/95 to-50%"></div>
+                            <div class="relative bottom-0 z-10 w-full">
+                                <p class="mb-1 line-clamp-1 truncate text-xl text-white">
+                                    {posts[1].data.title}
+                                </p>
+                                <p class="line-clamp-1 truncate text-sm">
+                                    {posts[1].data.description}
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                </div>
+                </CTACard>
             </div>
         </section>
     </GradientWrapper>

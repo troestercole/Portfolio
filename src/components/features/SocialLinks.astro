@@ -1,0 +1,50 @@
+---
+import EmailIcon from '../icons/email.astro';
+import LinkedInIcon from '../icons/linked-in.astro';
+import GithubIcon from '../icons/github.astro';
+
+export interface Props {
+    color: 'red' | 'green' | 'blue';
+}
+
+const { color } = Astro.props;
+
+const colorClasses = {
+    red: 'bg-rose-800 hover:bg-rose-950',
+    green: 'bg-green-800 hover:bg-green-950',
+    blue: 'bg-blue-800 hover:bg-blue-950',
+};
+---
+
+<ul class="flex h-full flex-col items-end justify-between">
+    <li>
+        <a
+            href="mailto:troestercole@gmail.com"
+            target="_blank"
+            title="Email"
+            class={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 ${colorClasses[color]}`}
+        >
+            <EmailIcon />
+        </a>
+    </li>
+    <li>
+        <a
+            href="https://www.linkedin.com/in/cole-troester/"
+            target="_blank"
+            title="LinkedIn"
+            class={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 ${colorClasses[color]}`}
+        >
+            <LinkedInIcon />
+        </a>
+    </li>
+    <li>
+        <a
+            href="https://github.com/troestercole"
+            target="_blank"
+            title="Github"
+            class={`flex h-10 w-10 items-center justify-center rounded-full transition-colors duration-200 ${colorClasses[color]}`}
+        >
+            <GithubIcon />
+        </a>
+    </li>
+</ul>
