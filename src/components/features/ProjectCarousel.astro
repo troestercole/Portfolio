@@ -11,10 +11,10 @@ export interface Props {
 const { projects } = Astro.props;
 ---
 
-<div class="group relative mt-1">
+<div class="group relative mx-auto mt-1 h-24 w-full max-w-3xs">
     {
         projects.map((project) => (
-            <a href={project.href} class="project-item absolute top-1/2 shadow-xl">
+            <a href={project.href} class="project-item absolute top-1/2 max-h-24 shadow-xl">
                 <img src={project.image} alt={project.alt || `Project ${project.id}`} />
             </a>
         ))

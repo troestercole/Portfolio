@@ -11,6 +11,7 @@ import { getCollection } from 'astro:content';
 import HeroImageURL from '../assets/cole.png';
 import SocialLinks from '../components/features/SocialLinks.astro';
 import ProjectCarousel from '../components/features/ProjectCarousel.astro';
+import ArticlePreview from '../components/features/ArticlePreview.astro';
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -24,15 +25,15 @@ const projects = [
 
 <Layout>
     <GradientWrapper>
-        <section id="Hero" class="mx-auto flex max-w-6xl items-center gap-36 px-6 pt-6">
-            <Image src={HeroImageURL} alt="Cole Troester" class="mx-auto max-w-[400px]" />
-            <div>
-                <p class="text-3xl">Hi, I'm</p>
-                <h1 class="mb-4 -ml-1.5 text-8xl text-white">Cole Troester.</h1>
-                <h3 class="mb-8 text-3xl">
+        <section id="Hero" class="mx-auto flex max-w-6xl items-center gap-12 px-8 pt-6 lg:gap-36">
+            <Image src={HeroImageURL} alt="Cole Troester" class="] order-2 mx-auto hidden w-full max-w-[400px] lg:order-1 lg:block" />
+            <div class="order-1 my-6 max-w-[720px] sm:my-12 lg:order-2 lg:my-6">
+                <p class="text-2xl sm:text-3xl">Hi, I'm</p>
+                <h1 class="mb-2 -ml-1.5 text-6xl text-white sm:mb-4 sm:text-8xl">Cole Troester.</h1>
+                <h3 class="mb-4 text-2xl sm:mb-8 sm:text-3xl">
                     Crafting full-site builds and web apps that <strong class="text-white">drive growth</strong> and delight users.
                 </h3>
-                <ul class="list-inside list-disc text-xl">
+                <ul class="list-inside list-disc text-lg sm:text-xl">
                     <li>Websites & Web Apps</li>
                     <li>UX & UI Design</li>
                     <li>APIs & Full-Stack</li>
@@ -40,7 +41,7 @@ const projects = [
             </div>
         </section>
         <section id="CTAs" class="mx-auto -mt-0.5 max-w-[1400px] px-8 pb-6">
-            <div class="grid grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
                 <div>
                     <CTACard
                         color="red"
@@ -48,7 +49,7 @@ const projects = [
                         description="Projects that showcase technical expertise and attention to user experience."
                         buttonHref="#"
                         buttonText="Browse Portfolio"
-                        className="mb-8 grid grid-cols-2 gap-8"
+                        className="mb-8 grid grid-cols-1 items-center gap-8 lg:grid-cols-2"
                     >
                         <ProjectCarousel projects={projects} />
                     </CTACard>
@@ -59,7 +60,7 @@ const projects = [
                         description="Interested in discussing potential projects or collaborations? Let's connect."
                         buttonHref="#"
                         buttonText="Let’s Connect"
-                        className="grid grid-cols-[2fr_1fr] gap-8"
+                        className="flex justify-between gap-8 lg:grid lg:grid-cols-[2fr_1fr]"
                     >
                         <SocialLinks color="green" />
                     </CTACard>
@@ -73,37 +74,20 @@ const projects = [
                     buttonText="View All Articles"
                     className="flex h-full flex-col gap-8"
                 >
-                    <div class="grid flex-grow grid-cols-[2fr_1fr] gap-4">
-                        <a
+                    <div class="grid h-36 flex-grow grid-cols-1 gap-4 md:h-auto lg:grid-cols-[2fr_1fr]">
+                        <ArticlePreview
+                            title={posts[0].data.title}
+                            description={posts[0].data.description}
+                            image={posts[0].data.image.url}
                             href="#"
-                            class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
-                            style={{ backgroundImage: `url(${posts[0].data.image.url})` }}
-                        >
-                            <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/90 to-70%"></div>
-                            <div class="relative bottom-0 z-10 w-full">
-                                <p class="mb-1 line-clamp-1 truncate text-xl text-white">
-                                    {posts[0].data.title}
-                                </p>
-                                <p class="line-clamp-1 truncate text-sm">
-                                    {posts[0].data.description}
-                                </p>
-                            </div>
-                        </a>
-                        <a
+                        />
+                        <ArticlePreview
+                            title={posts[1].data.title}
+                            description={posts[1].data.description}
+                            image={posts[1].data.image.url}
                             href="#"
-                            class="relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm"
-                            style={{ backgroundImage: `url(${posts[1].data.image.url})` }}
-                        >
-                            <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/95 to-50%"></div>
-                            <div class="relative bottom-0 z-10 w-full">
-                                <p class="mb-1 line-clamp-1 truncate text-xl text-white">
-                                    {posts[1].data.title}
-                                </p>
-                                <p class="line-clamp-1 truncate text-sm">
-                                    {posts[1].data.description}
-                                </p>
-                            </div>
-                        </a>
+                            className="hidden lg:flex"
+                        />
                     </div>
                 </CTACard>
             </div>

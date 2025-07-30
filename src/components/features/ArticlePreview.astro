@@ -1,0 +1,27 @@
+---
+export interface Props {
+    title: string;
+    description: string;
+    image: string;
+    href: string;
+    className?: string;
+}
+
+const { title, description, image, href, className } = Astro.props;
+---
+
+<a
+    href={href}
+    class={`relative flex h-full w-full items-end overflow-hidden rounded-lg bg-gray-200 bg-cover bg-center px-4 py-4 shadow-sm ${className}`}
+    style={{ backgroundImage: `url(${image})` }}
+>
+    <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent to-gray-900/90 to-70%"></div>
+    <div class="relative bottom-0 z-10 w-full">
+        <p class="mb-1 line-clamp-1 truncate text-xl text-white">
+            {title}
+        </p>
+        <p class="line-clamp-1 truncate text-sm">
+            {description}
+        </p>
+    </div>
+</a>
