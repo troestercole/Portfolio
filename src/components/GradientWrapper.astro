@@ -1,3 +1,35 @@
+---
+export interface Props {
+    color: 'red' | 'green' | 'blue';
+}
+
+const { color } = Astro.props;
+
+const colorVars = {
+    red: {
+        '--color1': '185, 28, 28',
+        '--color2': '157, 23, 77',
+        '--color3': '185, 28, 28',
+        '--color4': '157, 23, 77',
+        '--color5': '185, 28, 28',
+    },
+    green: {
+        '--color1': '21, 128, 61',
+        '--color2': '5, 150, 105',
+        '--color3': '21, 128, 61',
+        '--color4': '5, 150, 105',
+        '--color5': '21, 128, 61',
+    },
+    blue: {
+        '--color1': '106, 33, 166',
+        '--color2': '55, 48, 163',
+        '--color3': '106, 33, 166',
+        '--color4': '55, 48, 163',
+        '--color5': '106, 33, 166',
+    },
+};
+---
+
 <!-- Shout out to https://github.com/baunov/gradients-bg --><!-- TODO: Make this a reusable, dynamic component -->
 <div class="relative">
     <div class="relative z-10">
@@ -14,7 +46,7 @@
                 </filter>
             </defs>
         </svg>
-        <div class="gradients-container">
+        <div class="gradients-container" style={colorVars[color]}>
             <div class="g1"></div>
             <div class="g2"></div>
             <div class="g3"></div>
@@ -29,11 +61,6 @@
         --test: ;
         --color-bg1: #111827;
         --color-bg2: #111827;
-        --color1: 106, 33, 166;
-        --color2: 55, 48, 163;
-        --color3: 106, 33, 166;
-        --color4: 55, 48, 163;
-        --color5: 106, 33, 166;
         --circle-size: 85%;
         --blending: hard-light;
     }
